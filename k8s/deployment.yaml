@@ -30,7 +30,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: status-service
-          image: ghcr.io/yinlerens/service@sha256:cec46efbb8f3374a7536c70cc7c17f0a1eca8ff06307e1afa2282134aeba083c
+          image: ghcr.io/yinlerens/service@sha256:0acdaa5f233bbea34acf77ddab231225be0f4cc16a422e834c104b5b46f758de
           imagePullPolicy: Always
           ports:
             - name: http
