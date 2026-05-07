@@ -27,13 +27,19 @@ tests/
 ## 安装依赖
 
 ```bash
-python -m pip install -r requirements.txt
+uv sync
+```
+
+如果需要运行测试，再安装测试依赖：
+
+```bash
+uv sync --extra test
 ```
 
 ## 启动服务
 
 ```bash
-python -m status_service --host 127.0.0.1 --port 8000
+uv run status-service --host 127.0.0.1 --port 8000
 ```
 
 启动后可以打开自动接口文档：
@@ -63,7 +69,15 @@ curl -i -X POST http://127.0.0.1:8000/status \
 ## 测试
 
 ```bash
-python -m unittest
+uv run --extra test python -m unittest
 ```
 
-q8iyTxdiCcLR-kQX
+## 镜像发布
+
+代码推送到 GitHub 后，GitHub Actions 会自动构建镜像并推送到 GitHub Container Registry：
+
+```text
+ghcr.io/<owner>/<repo>
+```
+
+默认分支会额外发布 `latest` 标签；分支、Git tag 和提交 SHA 也会生成对应镜像标签。

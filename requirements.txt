@@ -1,9 +1,0 @@
-# FastAPI 是 Web 框架，用来声明接口、校验参数、生成接口文档。
-fastapi>=0.115.0,<1.0.0
-
-# uvicorn 是 ASGI 服务器，用来真正启动 FastAPI 应用并监听端口。
-uvicorn[standard]>=0.32.0,<1.0.0
-
-# httpx 是 HTTP 客户端库。
-# FastAPI 的 TestClient 依赖它来做接口测试。
-httpx>=0.28.0,<1.0.0

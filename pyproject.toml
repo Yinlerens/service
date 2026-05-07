@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "status-service"
+dynamic = ["version"]
+description = "A small FastAPI service that returns the requested HTTP status code."
+readme = "status_service/README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0,<1.0.0",
+    "uvicorn[standard]>=0.32.0,<1.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "httpx>=0.28.0,<1.0.0",
+]
+
+[project.scripts]
+status-service = "status_service.server:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "status_service.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["status_service*"]
