@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: status-service
+  namespace: status-service
+  labels:
+    app.kubernetes.io/name: status-service
+    app.kubernetes.io/part-of: status-service
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: status-service
+                port:
+                  number: 80

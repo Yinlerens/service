@@ -5,7 +5,7 @@ ENV UV_COMPILE_BYTECODE=1 \
 
 WORKDIR /app
 
-COPY --from=ghcr.io/astral-sh/uv:0.8.18 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.11.11 /uv /uvx /bin/
 
 COPY pyproject.toml uv.lock ./
 
@@ -19,12 +19,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-RUN addgroup --system app && adduser --system --ingroup app app
+RUN addgroup --system --gid 10001 app \
+    && adduser --system --uid 10001 --ingroup app app
 
 COPY --from=builder /app/.venv /app/.venv
 COPY status_service ./status_service
 
-USER app
+USER 10001:10001
 
 EXPOSE 8000
 

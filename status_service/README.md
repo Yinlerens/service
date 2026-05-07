@@ -81,3 +81,22 @@ ghcr.io/<owner>/<repo>
 ```
 
 默认分支会额外发布 `latest` 标签；分支、Git tag 和提交 SHA 也会生成对应镜像标签。
+
+## Kubernetes / ArgoCD 部署
+
+当前部署配置默认使用：
+
+- 命名空间：`status-service`
+- 镜像：`ghcr.io/yinlerens/service:latest`
+- ArgoCD Application 所在命名空间：`argocd`
+- Git 仓库：`https://github.com/Yinlerens/service.git`
+- Git 分支：`main`
+- 暴露方式：Kubernetes `Ingress`
+
+首次接入 ArgoCD 时，在集群中应用：
+
+```bash
+kubectl apply -f argocd/app.yaml
+```
+
+如果你的集群需要指定域名、TLS 或 `ingressClassName`，请调整 `k8s/route.yaml`。
