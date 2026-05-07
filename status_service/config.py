@@ -38,3 +38,7 @@ class Settings:
     # 第一个业务接口路径。
     # 也就是说，POST 请求会发到 `/status`。
     status_endpoint: str = "/status"
+
+    # 健康检查接口路径。
+    # Kubernetes 的启动、就绪、存活探针会请求这个路径。
+    health_endpoint: str = "/health"

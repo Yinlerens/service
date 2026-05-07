@@ -2,13 +2,15 @@
 
 这是一个结构简单但目录清晰的 Python 后端服务。
 
-当前只提供一个接口：
+当前提供两个接口：
 
 ```http
 POST /status
+GET /health
 ```
 
 请求体里的 `type` 是 HTTP 状态码，接口会把响应状态码设置成同样的值。
+`GET /health` 用于健康检查，正常时返回 `{"status": "ok"}`。
 
 ## 目录说明
 
@@ -56,6 +58,12 @@ http://127.0.0.1:8000/docs
 curl -i -X POST http://127.0.0.1:8000/status \
   -H "Content-Type: application/json" \
   -d "{\"type\": 201}"
+```
+
+健康检查：
+
+```bash
+curl -i http://127.0.0.1:8000/health
 ```
 
 示例：传入 `404`，接口就返回 `HTTP 404`。

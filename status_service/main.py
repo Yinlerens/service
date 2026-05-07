@@ -18,7 +18,7 @@ from .config import Settings
 
 # 从入参模型文件导入 `StatusCodeRequest`。
 # 它负责描述 POST /status 的 JSON 请求体格式。
-from .schemas import StatusCodeRequest
+from .schemas import HealthResponse, StatusCodeRequest
 
 
 # 创建配置对象。
@@ -35,6 +35,18 @@ app = FastAPI(
     # 应用描述会显示在自动接口文档页面中，帮助别人理解这个服务做什么。
     description="传入一个 HTTP 状态码，接口就返回同样的 HTTP 状态码。",
 )
+
+
+@app.get(
+    settings.health_endpoint,
+    response_model=HealthResponse,
+    summary="健康检查",
+    tags=["health"],
+)
+def health_check() -> HealthResponse:
+    """返回服务健康状态。"""
+
+    return HealthResponse()
 
 
 # `@app.post(...)` 是 FastAPI 的路由装饰器。

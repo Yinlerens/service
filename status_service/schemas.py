@@ -34,3 +34,14 @@ class StatusCodeRequest(BaseModel):
         # `examples` 也会出现在接口文档里，方便调用者理解怎么传参。
         examples=[200],
     )
+
+
+class HealthResponse(BaseModel):
+    """GET /health 接口的响应体。"""
+
+    # `status=ok` 表示应用进程已经可以正常响应请求。
+    status: str = Field(
+        default="ok",
+        description="服务健康状态。",
+        examples=["ok"],
+    )

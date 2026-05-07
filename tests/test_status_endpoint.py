@@ -30,6 +30,14 @@ class StatusEndpointTests(unittest.TestCase):
         # 创建 FastAPI 测试客户端。
         self.client = TestClient(app)
 
+    def test_health_endpoint_returns_ok(self) -> None:
+        """健康检查接口应该返回 HTTP 200 和 ok 状态。"""
+
+        response = self.client.get("/health")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"status": "ok"})
+
     def test_returns_requested_success_status_code(self) -> None:
         """传入 201 时，接口应该返回 HTTP 201。"""
 
